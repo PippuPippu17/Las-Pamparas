@@ -1,0 +1,6 @@
+package pizzeria.helado;
+
+public enum ExtraIngredienteHelado {
+  CHISPAS_CHOCOLATE, GOMITAS_PANDITA, GOMITAS_GUSANITOS,
+  DURAZNITOS, MANGUITOS, FRESAS, CHISPAS_DE_COLORES
+}
