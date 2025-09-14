@@ -1,29 +1,41 @@
 package pizzeria.helado;
 
-public class DecoratorHelado implements Helado {
-  private ExtraIngredienteHelado extraIngrediente;
-  private double extraPrecio;
-  protected Helado wrap;
-  
-  public DecoratorHelado(Helado wrap, ExtraIngredienteHelado extraIngrediente, double precio){
-    this.wrap = wrap;
-    this.extraIngrediente = extraIngrediente;
-    this.extraPrecio = precio;
-  }
+/**
+ * Clase abstracta DecoratorHelado.
+ * Representa la base para los ingredientes extra que se le pueden
+ * agregar a un helado. Implementa la interfaz Helado y mantiene
+ * una referencia al componente que decora.
+ * 
+ * Es el decorador abstracto dentro del patron Decorator.
+ * 
+ * @author Las Pamparas
+ */
+public abstract class DecoratorHelado implements Helado {
 
-  @Override 
-  public String getDescripcion(){
-    return wrap.getDescripcion().toString() + " , con ingrediente extra: " + extraIngrediente.toString();
-  }
+    protected Helado heladoBase;
+    protected String nombreIngrediente;
+    protected double precioExtra;
 
-  @Override 
-  public double getPrecio(){
-  return wrap.getPrecio() + extraPrecio;
-  }
+    /**
+     * Constructor del decorador.
+     * 
+     * @param heladoBase el helado que se va a decorar
+     * @param nombreIngrediente nombre del ingrediente extra
+     * @param precioExtra costo adicional del ingrediente extra
+     */
+    public DecoratorHelado(Helado heladoBase, String nombreIngrediente, double precioExtra) {
+        this.heladoBase = heladoBase;
+        this.nombreIngrediente = nombreIngrediente;
+        this.precioExtra = precioExtra;
+    }
 
-  @Override
-  public String toString() {
-    return "Helado de " + getDescripcion() + " con precio: " + getPrecio();
-  }
+    @Override
+    public String getDescripcion() {
+        return heladoBase.getDescripcion() + ", con " + nombreIngrediente;
+    }
+
+    @Override
+    public double getPrecio() {
+        return heladoBase.getPrecio() + precioExtra;
+    }
 }
-
